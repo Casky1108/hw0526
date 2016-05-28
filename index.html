@@ -1,0 +1,59 @@
+CTYPE html>
+<html>
+  <head>
+      <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+          <meta charset="utf-8">
+	      <title>Complex icons</title>
+	          <style>
+		        html, body {
+			        height: 100%;
+				        margin: 0;
+					        padding: 0;
+						      }
+						            #map {
+							            height: 100%;
+								          }
+									      </style>
+									        </head>
+										  <body>
+										      <div id="map"></div>
+										          <script>
+											  function initMap() {
+											    var map = new google.maps.Map(document.getElementById('map'), {
+											        zoom: 14,
+												    center: {lat: 25.074629, lng: 121.478162}
+												      });
+												        setMarkers(map);
+													}
+													var beaches = {{locations}};
+													function setMarkers(map) {
+													  var image = {
+													      url: 'images/beachflag.png',
+													          // This marker is 20 pixels wide by 32 pixels high.
+														      size: new google.maps.Size(20, 32),
+														          // The origin for this image is (0, 0).
+															      origin: new google.maps.Point(0, 0),
+															          // The anchor for this image is the base of the flagpole at (0, 32).
+																      anchor: new google.maps.Point(0, 32)
+																        };
+																	  var shape = {
+																	      coords: [1, 1, 1, 20, 18, 20, 18, 1],
+																	          type: 'poly'
+																		    };
+																		      for (var i = 0; i < beaches.length; i++) {
+																		          var beach = beaches[i];
+																			      var marker = new google.maps.Marker({
+																			            position: {lat: beach[1], lng: beach[2]},
+																				          map: map,
+																					        shape: shape,
+																						      title: beach[0],
+																						            zIndex: beach[3]
+																							        });
+																								  }
+																								  }
+																								      </script>
+																								          <script async defer
+																									          src="https://maps.googleapis.com/maps/api/js?key=API_KEY&signed_in=true&callback=initMap"></script>
+																										    </body>
+																										    </html>
+
